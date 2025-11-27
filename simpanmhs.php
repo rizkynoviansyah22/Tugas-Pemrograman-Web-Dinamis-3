@@ -1,19 +1,19 @@
-<?php 
-
+<?php
 include "connection.php";
 
 
-$nim = $_POST['nim'];
-$nama = $_POST['nama'];
-$alamat = $_POST['alamat'];
-$nohp = $_POST['nohp'];
-$email = $_POST['email'];
-$query=mysqli_query($conn,"insert into mahasiswa (nim,nama, alamat, nohp, email) values ( " .$nim." , ' ".$nama." ', ' ".$alamat." ', '".$nohp." ', ' ".$email."')");
+    $nim = mysqli_real_escape_string($conn, $_POST['nim']);
+    $nama = mysqli_real_escape_string($conn, $_POST['nama']);
+    $alamat = mysqli_real_escape_string($conn, $_POST['alamat']);
+    $nohp = mysqli_real_escape_string($conn, $_POST['nohp']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+
+
+$query = "INSERT INTO mahasiswa (nim, nama, alamat, nohp, email) 
+          VALUES ('$nim', '$nama', '$alamat', '$nohp', '$email')";
+
+mysqli_query($conn, $query);
 mysqli_close($conn);
 
 header("location:mahasiswa.php");
-
-
-
-
 ?>
